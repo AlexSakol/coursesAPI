@@ -15,10 +15,10 @@ class CoursesTest extends TestCase
     {
         $course = Course::factory()->create();
 
-        $responce = $this->getJson(route('api.courses.index'));
-        $responce->assertOk();
+        $response = $this->getJson(route('api.courses.index'));
+        $response->assertOk();
 
-        $responce->assertJson([
+        $response->assertJson([
             'data' => [
                 [
                     'id' => $course->id,
@@ -29,5 +29,25 @@ class CoursesTest extends TestCase
                 ]
             ]
         ]);
+    }
+
+    public function test_can_store_a_course()
+    {
+        $newCourse = Course::factory()->make();
+
+        $response = $this->postJson(
+            route('api.courses.store'),
+            $newCourse->toArray()
+        );
+        $response->assertCreated();
+        $response->assertJson([
+           'data' => [
+               'name' => $newCourse->name
+           ]
+        ]);
+        $this->assertDatabaseHas(
+            'courses',
+            $newCourse->toArray()
+        );
     }
 }

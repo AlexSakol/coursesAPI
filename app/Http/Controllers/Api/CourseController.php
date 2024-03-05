@@ -14,4 +14,11 @@ class CourseController extends Controller
             'data' => Course::all()
         ]);
     }
+
+    public function store(Request $request)
+    {
+        return response()->json([
+            'data' => Course::create($request->all())
+        ], 201);
+    }
 }
