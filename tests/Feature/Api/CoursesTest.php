@@ -5,10 +5,13 @@ namespace Tests\Feature\Api;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Course;
 
 class CoursesTest extends TestCase
 {
-    public function can_get_all_courses()
+    use RefreshDatabase;
+
+    public function test_can_get_all_courses()
     {
         $course = Course::factory->create();
 
