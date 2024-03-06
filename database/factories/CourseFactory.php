@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +24,7 @@ class CourseFactory extends Factory
             'name' => $this->faker->word,
             'price' => $this->faker->randomNumber(6),
             'description' => $this->faker->paragraph,
-            'category' => $this->faker->word
+            'category_id' => Category::factory()
         ];
     }
 }

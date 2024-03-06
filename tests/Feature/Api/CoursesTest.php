@@ -2,8 +2,9 @@
 
 namespace Tests\Feature\Api;
 
+
+use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Course;
 
@@ -25,7 +26,7 @@ class CoursesTest extends TestCase
                     'name' => $course->name,
                     'price' => $course->price,
                     'description' => $course->description,
-                    'category' => $course->category
+                    'category_id' => $course->category_id
                 ]
             ]
         ]);

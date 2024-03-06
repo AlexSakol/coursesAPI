@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ Route::get('courses', [CourseController::class, 'index'])->name('api.courses.ind
 Route::post('courses', [CourseController::class, 'store'])->name('api.courses.store');
 Route::put('courses/{course}', [CourseController::class, 'update'])->name('api.courses.update');
 Route::delete('courses/{course}',  [CourseController::class, 'destroy'])->name('api.courses.destroy');
+
+Route::apiResource('categories', CategoryController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
