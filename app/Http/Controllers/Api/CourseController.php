@@ -29,4 +29,10 @@ class CourseController extends Controller
 
         return response()->json(['data' => $course]);
     }
+
+    public function destroy(Course $course)
+    {
+        $course->delete();
+        return response([], 204);
+    }
 }

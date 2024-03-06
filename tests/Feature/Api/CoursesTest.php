@@ -72,4 +72,18 @@ class CoursesTest extends TestCase
             $newCourse->toArray()
         );
     }
+
+    public function test_can_delete_a_course()
+    {
+        $existingCourse = Course::factory()->create();
+
+        $this->deleteJson(
+            route('api.courses.destroy', $existingCourse)
+        )->assertNoContent();
+
+        $this->assertDatabaseMissing(
+            'courses',
+            $existingCourse->toArray()
+        );
+    }
 }
