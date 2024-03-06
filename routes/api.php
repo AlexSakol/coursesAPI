@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\CourseController;
 
 Route::get('courses', [CourseController::class, 'index'])->name('api.courses.index');
 Route::post('courses', [CourseController::class, 'store'])->name('api.courses.store');
+Route::put('courses/{course}', [CourseController::class, 'update'])->name('api.courses.update');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

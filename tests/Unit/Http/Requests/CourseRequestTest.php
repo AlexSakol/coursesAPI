@@ -17,7 +17,6 @@ class CourseRequestTest extends TestCase
     {
         $validatedField = 'name';
         $brokenRule = null;
-
         $course = Course::factory()->make([
             $validatedField => $brokenRule
         ]);
@@ -25,6 +24,16 @@ class CourseRequestTest extends TestCase
         $this->postJson(
             route($this->routePrefix . 'store'),
             $course->toArray()
+        )->assertJsonValidationErrors($validatedField);
+
+        $existingCourse = Course::factory()->create();
+        $newCourse = Course::factory()->make([
+            $validatedField => $brokenRule
+        ]);
+
+        $this->putJson(
+            route($this->routePrefix . 'update', $existingCourse),
+            $newCourse->toArray()
         )->assertJsonValidationErrors($validatedField);
     }
 
@@ -41,6 +50,17 @@ class CourseRequestTest extends TestCase
             route($this->routePrefix . 'store'),
             $course->toArray()
         )->assertJsonValidationErrors($validatedField);
+
+        $existingCourse = Course::factory()->create();
+        $newCourse = Course::factory()->make([
+            $validatedField => $brokenRule
+        ]);
+
+        $this->putJson(
+            route($this->routePrefix . 'update', $existingCourse),
+            $newCourse->toArray()
+        )->assertJsonValidationErrors($validatedField);
+
     }
 
     public function test_price_is_required(): void
@@ -56,7 +76,18 @@ class CourseRequestTest extends TestCase
             route($this->routePrefix . 'store'),
             $course->toArray()
         )->assertJsonValidationErrors($validatedField);
+
+        $existingCourse = Course::factory()->create();
+        $newCourse = Course::factory()->make([
+            $validatedField => $brokenRule
+        ]);
+
+        $this->putJson(
+            route($this->routePrefix . 'update', $existingCourse),
+            $newCourse->toArray()
+        )->assertJsonValidationErrors($validatedField);
     }
+
     public function test_price_is_integer(): void
     {
         $validatedField = 'price';
@@ -69,6 +100,16 @@ class CourseRequestTest extends TestCase
         $this->postJson(
             route($this->routePrefix . 'store'),
             $course->toArray()
+        )->assertJsonValidationErrors($validatedField);
+
+        $existingCourse = Course::factory()->create();
+        $newCourse = Course::factory()->make([
+            $validatedField => $brokenRule
+        ]);
+
+        $this->putJson(
+            route($this->routePrefix . 'update', $existingCourse),
+            $newCourse->toArray()
         )->assertJsonValidationErrors($validatedField);
     }
 }

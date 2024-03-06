@@ -50,4 +50,26 @@ class CoursesTest extends TestCase
             $newCourse->toArray()
         );
     }
+
+    public function test_can_update_a_course()
+    {
+        $existingCourse = Course::factory()->create();
+        $newCourse = Course::factory()->make();
+
+        $response = $this->putJson(
+            route('api.courses.update', $existingCourse),
+            $newCourse->toArray()
+        );
+        $response->assertJson([
+            'data' => [
+                'id' => $existingCourse->id,
+                'name' => $newCourse->name
+            ]
+        ]);
+
+        $this->assertDatabaseHas(
+            'courses',
+            $newCourse->toArray()
+        );
+    }
 }
