@@ -71,9 +71,7 @@ class CategoryTest extends TestCase
     {
         $existingCategory = Category::factory()->create();
         $this->deleteJson(route('categories.destroy', $existingCategory),
-        [
-            'data' => $existingCategory
-        ])->assertNoContent();
+        )->assertNoContent();
         $this->assertDatabaseMissing('categories', $existingCategory->toArray());
     }
 }

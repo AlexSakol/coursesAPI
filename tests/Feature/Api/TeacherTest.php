@@ -59,4 +59,15 @@ class TeacherTest extends TestCase
 
         $this->assertDatabaseHas('teachers', $newTeacher->toArray());
     }
+
+    public function test_can_destroy_a_teacher(): void
+    {
+        $teacher = Teacher::factory()->create();
+
+        $this->deleteJson(
+            route('teachers.destroy', $teacher)
+        )->assertNoContent();
+        $this->assertDatabaseMissing('teachers', $teacher->toArray());
+
+    }
 }
