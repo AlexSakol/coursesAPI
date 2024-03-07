@@ -2,8 +2,6 @@
 
 namespace Tests\Feature\Api;
 
-
-use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Course;
@@ -16,7 +14,7 @@ class CoursesTest extends TestCase
     {
         $course = Course::factory()->create();
 
-        $response = $this->getJson(route('api.courses.index'));
+        $response = $this->getJson(route('courses.index'));
         $response->assertOk();
 
         $response->assertJson([
@@ -38,7 +36,7 @@ class CoursesTest extends TestCase
         $newCourse = Course::factory()->make();
 
         $response = $this->postJson(
-            route('api.courses.store'),
+            route('courses.store'),
             $newCourse->toArray()
         );
         $response->assertCreated();
@@ -59,7 +57,7 @@ class CoursesTest extends TestCase
         $newCourse = Course::factory()->make();
 
         $response = $this->putJson(
-            route('api.courses.update', $existingCourse),
+            route('courses.update', $existingCourse),
             $newCourse->toArray()
         );
         $response->assertJson([
@@ -80,7 +78,7 @@ class CoursesTest extends TestCase
         $existingCourse = Course::factory()->create();
 
         $this->deleteJson(
-            route('api.courses.destroy', $existingCourse)
+            route('courses.destroy', $existingCourse)
         )->assertNoContent();
 
         $this->assertDatabaseMissing(

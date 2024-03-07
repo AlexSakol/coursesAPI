@@ -8,11 +8,6 @@ use Illuminate\Support\Str;
 
 class CourseRequestTest extends TestCase
 {
-    private string $routePrefix = 'api.courses.';
-
-    /**
-     * A basic unit test example.
-     */
     public function test_name_is_required(): void
     {
         $validatedField = 'name';
@@ -22,7 +17,12 @@ class CourseRequestTest extends TestCase
         ]);
 
         $this->postJson(
-            route($this->routePrefix . 'store'),
+            route( 'courses.index'),
+            $course->toArray()
+        )->assertJsonValidationErrors($validatedField);
+
+        $this->postJson(
+            route( 'courses.store'),
             $course->toArray()
         )->assertJsonValidationErrors($validatedField);
 
@@ -32,7 +32,7 @@ class CourseRequestTest extends TestCase
         ]);
 
         $this->putJson(
-            route($this->routePrefix . 'update', $existingCourse),
+            route('courses.update', $existingCourse),
             $newCourse->toArray()
         )->assertJsonValidationErrors($validatedField);
     }
@@ -47,7 +47,12 @@ class CourseRequestTest extends TestCase
         ]);
 
         $this->postJson(
-            route($this->routePrefix . 'store'),
+            route('courses.index'),
+            $course->toArray()
+        )->assertJsonValidationErrors($validatedField);
+
+        $this->postJson(
+            route('courses.store'),
             $course->toArray()
         )->assertJsonValidationErrors($validatedField);
 
@@ -57,7 +62,7 @@ class CourseRequestTest extends TestCase
         ]);
 
         $this->putJson(
-            route($this->routePrefix . 'update', $existingCourse),
+            route('courses.update', $existingCourse),
             $newCourse->toArray()
         )->assertJsonValidationErrors($validatedField);
 
@@ -73,7 +78,12 @@ class CourseRequestTest extends TestCase
         ]);
 
         $this->postJson(
-            route($this->routePrefix . 'store'),
+            route('courses.index'),
+            $course->toArray()
+        )->assertJsonValidationErrors($validatedField);
+
+        $this->postJson(
+            route('courses.store'),
             $course->toArray()
         )->assertJsonValidationErrors($validatedField);
 
@@ -83,7 +93,7 @@ class CourseRequestTest extends TestCase
         ]);
 
         $this->putJson(
-            route($this->routePrefix . 'update', $existingCourse),
+            route('courses.update', $existingCourse),
             $newCourse->toArray()
         )->assertJsonValidationErrors($validatedField);
     }
@@ -98,7 +108,12 @@ class CourseRequestTest extends TestCase
         ]);
 
         $this->postJson(
-            route($this->routePrefix . 'store'),
+            route('courses.index'),
+            $course->toArray()
+        )->assertJsonValidationErrors($validatedField);
+
+        $this->postJson(
+            route('courses.store'),
             $course->toArray()
         )->assertJsonValidationErrors($validatedField);
 
@@ -108,7 +123,7 @@ class CourseRequestTest extends TestCase
         ]);
 
         $this->putJson(
-            route($this->routePrefix . 'update', $existingCourse),
+            route('courses.update', $existingCourse),
             $newCourse->toArray()
         )->assertJsonValidationErrors($validatedField);
     }

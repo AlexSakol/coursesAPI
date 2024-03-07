@@ -17,10 +17,7 @@ use App\Http\Controllers\Api\TeacherController;
 |
 */
 
-Route::get('courses', [CourseController::class, 'index'])->name('api.courses.index');
-Route::post('courses', [CourseController::class, 'store'])->name('api.courses.store');
-Route::put('courses/{course}', [CourseController::class, 'update'])->name('api.courses.update');
-Route::delete('courses/{course}',  [CourseController::class, 'destroy'])->name('api.courses.destroy');
+Route::apiResource('courses', CourseController::class);
 
 Route::apiResource('categories', CategoryController::class);
 
