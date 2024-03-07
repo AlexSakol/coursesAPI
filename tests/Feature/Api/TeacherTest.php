@@ -26,4 +26,37 @@ class TeacherTest extends TestCase
             ]
         ]);
     }
+
+    public function test_can_store_a_teacher(): void
+    {
+        $newTeacher = Teacher::factory()->make();
+
+        $response = $this->postJson(route('teachers.store'), $newTeacher->toArray());
+        $response->assertCreated();
+        $response->assertJson([
+            'data' => [
+                'name' => $newTeacher->name
+            ]
+        ]);
+
+        $this->assertDatabaseHas('teachers', $newTeacher->toArray());
+    }
+
+    public function test_can_update_a_teacher(): void
+    {
+        $oldTeacher = Teacher::factory()->create();
+        $newTeacher = Teacher::factory()->make();
+
+        $response = $this->putJson(route('teachers.update', $oldTeacher),
+            $newTeacher->toArray());
+
+        $response->assertJson([
+            'data' =>[
+                'id' => $oldTeacher->id,
+                'name' => $newTeacher->name
+            ]
+        ]);
+
+        $this->assertDatabaseHas('teachers', $newTeacher->toArray());
+    }
 }

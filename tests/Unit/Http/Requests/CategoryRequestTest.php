@@ -8,7 +8,6 @@ use Tests\TestCase;
 
 class CategoryRequestTest extends TestCase
 {
-
     public function test_name_is_required(): void
     {
         $validatedField = 'name';
