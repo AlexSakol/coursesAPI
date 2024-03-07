@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::put('courses/{course}', [CourseController::class, 'update'])->name('api.c
 Route::delete('courses/{course}',  [CourseController::class, 'destroy'])->name('api.courses.destroy');
 
 Route::apiResource('categories', CategoryController::class);
+
+Route::apiResource('teachers', TeacherController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

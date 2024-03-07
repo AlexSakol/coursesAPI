@@ -26,7 +26,8 @@ class CoursesTest extends TestCase
                     'name' => $course->name,
                     'price' => $course->price,
                     'description' => $course->description,
-                    'category_id' => $course->category_id
+                    'category_id' => $course->category_id,
+                    'teacher_id' => $course->teacher_id
                 ]
             ]
         ]);
