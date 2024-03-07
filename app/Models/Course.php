@@ -11,7 +11,7 @@ class Course extends Model
 
     public $timestamps = false;
 
-    protected  $fillable = ['name', 'price', 'description'];
+    protected  $fillable = ['name', 'price', 'description', 'category_id'];
 
     public function category()
     {

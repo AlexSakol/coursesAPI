@@ -29,21 +29,21 @@ class CategoryTest extends TestCase
 
     public function test_can_store_a_category(): void
     {
-        $category = Category::factory()->make();
+        $newCategory = Category::factory()->make();
 
-        $response = $this->postJson(route('categories.store'),
-            [
-                'data' => [$category]
-            ]);
+        $response = $this->postJson(
+            route('categories.store'),
+            $newCategory->toArray()
+        );
         $response->assertCreated();
         $response->assertJson([
             'data' => [
-                $category->name
+                'name' => $newCategory->name
             ]
         ]);
         $this->assertDatabaseHas(
             'categories',
-            $category->toArray()
+            $newCategory->toArray()
         );
     }
 
