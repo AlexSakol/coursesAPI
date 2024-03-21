@@ -31,7 +31,7 @@ services:
       context: dockerfiles
       dockerfile: composer.Dockerfile
     volumes:
-      - db_data:/var/www/coursesAPI
+      - ./src:/var/www/coursesAPI
   artisan:
     build:
       context: dockerfiles
